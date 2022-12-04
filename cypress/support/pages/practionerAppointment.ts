@@ -9,6 +9,10 @@ export default class PracticionerAppointment {
     }
 
     openTimeReservation(): void {
+        cy.get(this.selectors.appointmentRow).then(els => {
+            let appointments: number = els.length;
+            cy.wrap(appointments + 1).as('appointmentsNumBefore');
+        })
         cy.get(this.selectors.timeReserveBtn).click()
     }
 
@@ -43,7 +47,7 @@ export default class PracticionerAppointment {
     private getAppointmentsNumber(): void {
         cy.get(this.selectors.appointmentRow).then(els => {
             let appointments: number = els.length;
-            cy.wrap(appointments).as('appointmentsNum');
+            cy.wrap(appointments).as('appointmentsNumAfter');
         })
     }
 }
