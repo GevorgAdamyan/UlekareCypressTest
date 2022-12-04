@@ -1,0 +1,17 @@
+{
+  "name": "cypresstesttask",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run --browser chrome"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "cypress": "^11.2.0",
+    "cypress-mochawesome-reporter": "^3.2.3"
+  }
+}
