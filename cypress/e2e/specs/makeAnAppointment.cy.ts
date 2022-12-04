@@ -20,8 +20,9 @@ describe('Testing making appointment feature', () => {
         App.main.logOut();
     })
 
-    it('should make an appointment to Practioner doctor', () => {
-        App.appointment.openPractitioner();
+    it('should successfully make an appointment to Practioner doctor', () => {
+        App.appointment.nextDoctor();
+        App.appointment.selectReservedDoctor();
         App.practionerAppointment.openTimeReservation();
         App.practionerAppointment.selectCurrentDate();
         App.practionerAppointment.confirmAppointement();
@@ -30,19 +31,10 @@ describe('Testing making appointment feature', () => {
                 expect(nextYear).to.equal(firstYear)
             })
         })
-        cy.get('@appointmentsNum').then(num => {
-            expect(num).to.equal(1)
-        })
-    })
-
-    it('should make an appointment to Practioner doctor second time', () => {
-        App.appointment.nextDoctor();
-        App.appointment.selectReservedDoctor();
-        App.practionerAppointment.openTimeReservation();
-        App.practionerAppointment.selectCurrentDate();
-        App.practionerAppointment.confirmAppointement();
-        cy.get('@appointmentsNum').then(num => {
-            expect(num).to.equal(2)
+        cy.get('@appointmentsNumAfter').then(numAfter => {
+            cy.get('@appointmentsNumBefore').then(numBefore => {
+                expect(numAfter).to.equal(numBefore)
+            })
         })
     })
 })
